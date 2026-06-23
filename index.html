@@ -18,93 +18,85 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;scroll-padding-top:74px}
-  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.65;
-       -webkit-font-smoothing:antialiased}
-  a{color:var(--copper);text-decoration:none}
-  a:hover{color:#e0a268}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--copper);text-decoration:none} a:hover{color:#e0a268}
   img{display:block;max-width:100%}
   .container{max-width:1180px;margin:0 auto;padding:0 28px}
 
-  /* ---------- Header ---------- */
-  header{position:fixed;top:0;left:0;right:0;z-index:100;
-         background:rgba(14,14,16,.72);backdrop-filter:blur(12px) saturate(140%);
-         border-bottom:1px solid rgba(255,255,255,.06)}
-  .nav{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  /* language visibility */
+  [data-lang="en"] .hu{display:none}
+  [data-lang="hu"] .en{display:none}
+
+  /* Header */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,14,16,.72);backdrop-filter:blur(12px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
   .logo img{height:34px;width:auto}
-  .links{display:flex;align-items:center;gap:30px}
-  .links a{color:var(--muted);font-size:14.5px;font-weight:500;letter-spacing:.01em;transition:color .2s}
+  .navright{display:flex;align-items:center;gap:26px}
+  .links{display:flex;align-items:center;gap:28px}
+  .links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s}
   .links a:hover{color:var(--text)}
-  .cta{font-family:var(--body);font-size:14px;font-weight:600;color:var(--copper);
-       border:1px solid var(--copper-soft);border-radius:7px;padding:9px 18px;transition:.2s;cursor:pointer;background:none}
+  .cta{font-family:var(--body);font-size:14px;font-weight:600;color:var(--copper);border:1px solid var(--copper-soft);border-radius:7px;padding:9px 18px;transition:.2s;cursor:pointer;background:none}
   .cta:hover{background:var(--copper);color:#161013;border-color:var(--copper)}
+  .langtog{display:flex;align-items:center;gap:4px}
+  .langtog button{background:none;border:none;color:var(--dim);font-family:var(--body);font-weight:600;font-size:13.5px;cursor:pointer;padding:3px 2px;transition:color .2s}
+  .langtog button.active{color:var(--copper)}
+  .langtog span{color:var(--dim);font-size:12px}
   .burger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px}
   .burger span{display:block;width:24px;height:2px;background:var(--text);transition:.25s}
   .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-  /* ---------- Hero ---------- */
-  .hero{display:grid;grid-template-columns:1fr 1.12fr;align-items:stretch;min-height:100vh;gap:0}
-  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:120px 28px 80px 0;max-width:600px;margin-left:auto;padding-left:28px}
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1fr 1.12fr;align-items:stretch;min-height:100vh}
   .hero-wrap{max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1.12fr;align-items:stretch}
+  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:120px 28px 80px 28px;max-width:600px;margin-left:auto}
   .hero-img{position:relative;overflow:hidden}
-  .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-  .hero-img::after{content:"";position:absolute;inset:0;
-       background:linear-gradient(90deg,var(--bg) 0%,rgba(14,14,16,.4) 18%,transparent 45%)}
+  .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(14,14,16,.4) 18%,transparent 45%)}
   .kicker{font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-bottom:22px}
-  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5.2vw,60px);line-height:1.04;letter-spacing:-.015em;color:#fff;margin-bottom:24px}
+  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,5.2vw,58px);line-height:1.05;letter-spacing:-.015em;color:#fff;margin-bottom:24px}
   .hero h1 .accent{color:var(--copper)}
   .hero p{font-size:18.5px;color:var(--muted);max-width:48ch;margin-bottom:34px}
   .btnrow{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{font-family:var(--body);font-weight:600;font-size:15px;padding:14px 26px;border-radius:8px;cursor:pointer;transition:.2s;border:1px solid transparent}
+  .btn{font-family:var(--body);font-weight:600;font-size:15px;padding:14px 26px;border-radius:8px;cursor:pointer;transition:.2s;border:1px solid transparent;display:inline-block}
   .btn.solid{background:var(--copper);color:#161013}
   .btn.solid:hover{background:#dd9559;color:#161013}
   .btn.outline{background:none;color:var(--text);border-color:var(--line)}
   .btn.outline:hover{border-color:var(--text)}
 
-  /* ---------- Sections ---------- */
+  /* Sections */
   section{padding:104px 0;border-top:1px solid rgba(255,255,255,.05)}
   section:nth-of-type(even){background:var(--bg2)}
   .eyebrow{font-family:var(--body);font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
-  h2{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.01em;color:#fff;margin-bottom:18px;max-width:18ch}
+  h2{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.01em;color:#fff;margin-bottom:18px;max-width:20ch}
   h3{font-family:var(--disp);font-weight:600;font-size:21px;color:#fff;margin-bottom:8px}
-  .lead{font-size:19px;color:var(--muted);max-width:60ch;margin-bottom:10px}
+  .lead{font-size:19px;color:var(--muted);max-width:62ch;margin-bottom:10px}
   p{max-width:64ch;margin-bottom:14px;color:#c9c4bb}
   ul{list-style:none;max-width:64ch;margin:10px 0 14px}
   li{position:relative;padding-left:24px;margin-bottom:11px;color:#c9c4bb}
   li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;border-radius:50%;background:var(--copper)}
   li strong{color:#fff;font-weight:600}
   .note{font-size:14.5px;color:var(--dim);font-style:italic;border-left:2px solid var(--line);padding-left:14px}
-
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:34px 0 4px}
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
   .stat .n{font-family:var(--disp);font-size:34px;font-weight:700;color:var(--copper);line-height:1}
   .stat .l{font-size:13.5px;color:var(--muted);margin-top:8px}
-
-  /* feature rows */
   .feature{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:56px}
   .feature.rev .ftxt{order:2}
   .fimg{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#000}
   .fimg img{width:100%;height:auto}
-  .fcap{font-size:13px;color:var(--dim);margin-top:10px;padding-left:2px}
-
-  /* gallery */
+  .fcap{font-size:13px;color:var(--dim);margin-top:10px}
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
   .tile{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#000;aspect-ratio:4/3;cursor:pointer}
   .tile img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
   .tile:hover img{transform:scale(1.05)}
-  .tile.tall{aspect-ratio:3/4}
-  .ph{display:flex;align-items:center;justify-content:center;text-align:center;color:var(--dim);
-      border:1.5px dashed var(--line);background:var(--panel);cursor:default;font-size:13.5px;padding:20px}
-  .ph span{max-width:18ch}
-
-  /* lightbox */
+  .ph{display:flex;align-items:center;justify-content:center;text-align:center;color:var(--dim);border:1.5px dashed var(--line);background:var(--panel);cursor:default;font-size:13.5px;padding:20px}
+  .ph span{max-width:20ch}
   .lb{position:fixed;inset:0;background:rgba(8,8,10,.94);display:none;align-items:center;justify-content:center;z-index:200;padding:30px}
   .lb.show{display:flex}
   .lb img{max-width:92%;max-height:92%;border-radius:8px}
   .lb .x{position:absolute;top:22px;right:30px;color:#fff;font-size:34px;cursor:pointer;line-height:1;background:none;border:none}
-
-  /* faq */
   details{border-bottom:1px solid var(--line);max-width:74ch}
   details summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-family:var(--disp);font-weight:500;font-size:17px;color:#fff}
   details summary::-webkit-details-marker{display:none}
@@ -112,33 +104,24 @@
   details[open] summary::after{content:"\2013"}
   details summary:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:4px}
   details .ans{padding:0 0 22px;max-width:70ch}
-
-  /* role */
   .role{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin:24px 0;max-width:64ch}
   .roletag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#161013;background:var(--copper);padding:4px 11px;border-radius:20px;margin-bottom:14px}
-
-  /* contact */
   .contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:52px;align-items:start;margin-top:14px}
   .big-mail{font-family:var(--disp);font-size:20px;color:var(--copper);word-break:break-all;margin:6px 0 18px}
   form{display:flex;flex-direction:column;gap:15px;max-width:500px}
   label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:-9px}
-  input,select,textarea{font-family:var(--body);font-size:15px;color:var(--text);background:#0B0B0D;
-        border:1px solid var(--line);border-radius:9px;padding:12px 14px;width:100%}
+  input,select,textarea{font-family:var(--body);font-size:15px;color:var(--text);background:#0B0B0D;border:1px solid var(--line);border-radius:9px;padding:12px 14px;width:100%}
   textarea{resize:vertical;min-height:120px}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px rgba(200,133,76,.15)}
   select option{background:#15151A}
   .formnote{font-size:12.5px;color:var(--dim)}
-
+  .hp{position:absolute;left:-9999px}
   footer{background:#0A0A0C;border-top:1px solid var(--line);padding:34px 0 46px}
   .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--dim)}
   .foot a{color:var(--muted)} .foot a:hover{color:var(--copper)}
-
-  /* reveal */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-
-  /* ---------- Responsive ---------- */
   @media (max-width:900px){
     .hero,.hero-wrap{grid-template-columns:1fr}
     .hero{min-height:auto}
@@ -150,8 +133,7 @@
     .gallery{grid-template-columns:repeat(2,1fr)}
   }
   @media (max-width:680px){
-    .links{display:none;position:absolute;top:63px;left:0;right:0;flex-direction:column;gap:0;
-           background:#121216;border-bottom:1px solid var(--line);padding:8px 0}
+    .links{display:none;position:absolute;top:63px;left:0;right:0;flex-direction:column;gap:0;background:#121216;border-bottom:1px solid var(--line);padding:8px 0}
     .links.show{display:flex}
     .links a{padding:14px 28px;width:100%;font-size:15.5px}
     .links .cta{margin:10px 28px;text-align:center}
@@ -161,34 +143,41 @@
   }
 </style>
 </head>
-<body>
+<body data-lang="en">
 
 <header>
   <div class="nav">
     <a class="logo" href="#top"><img src="images/reach-logo.png" alt="REACH"></a>
-    <div class="links" id="menu">
-      <a href="#about">About</a>
-      <a href="#tech">Technology</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#faq">FAQ</a>
-      <a href="#join">Join</a>
-      <a class="cta" href="#contact">Get in touch</a>
+    <div class="navright">
+      <div class="links" id="menu">
+        <a href="#about"><span class="en">About</span><span class="hu">Projekt</span></a>
+        <a href="#tech"><span class="en">Technology</span><span class="hu">Technológia</span></a>
+        <a href="#gallery"><span class="en">Gallery</span><span class="hu">Galéria</span></a>
+        <a href="#faq"><span class="en">FAQ</span><span class="hu">GYIK</span></a>
+        <a href="#join"><span class="en">Join</span><span class="hu">Csatlakozz</span></a>
+        <a class="cta" href="#contact"><span class="en">Get in touch</span><span class="hu">Kapcsolat</span></a>
+      </div>
+      <div class="langtog">
+        <button data-lang="en" class="active">EN</button><span>/</span><button data-lang="hu">HU</button>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <div id="top" class="hero">
   <div class="hero-wrap">
     <div class="hero-copy">
-      <div class="kicker">Human → Robot → and back</div>
-      <h1>Human hand skill, <span class="accent">transferred to the robot</span>.</h1>
-      <p>A high-resolution data glove that captures every movement of the hand — and keeps working
-         where other gloves fail.</p>
+      <div class="kicker"><span class="en">Human &rarr; Robot &rarr; and back</span><span class="hu">Ember &rarr; Robot &rarr; és vissza</span></div>
+      <h1>
+        <span class="en">Human hand skill, <span class="accent">transferred to the robot</span>.</span>
+        <span class="hu">Az emberi kéz tudása, <span class="accent">átültetve a robotba</span>.</span>
+      </h1>
+      <p><span class="en">A high-resolution data glove that captures every movement of the hand — and keeps working where other gloves fail.</span><span class="hu">Nagy felbontású adatkesztyű, amely a kéz minden mozdulatát rögzíti — és ott is működik, ahol a többi kesztyű csődöt mond.</span></p>
       <div class="btnrow">
-        <a class="btn solid" href="#tech">See the technology</a>
-        <a class="btn outline" href="#contact">Get in touch</a>
+        <a class="btn solid" href="#tech"><span class="en">See the technology</span><span class="hu">A technológia</span></a>
+        <a class="btn outline" href="#contact"><span class="en">Get in touch</span><span class="hu">Kapcsolat</span></a>
       </div>
     </div>
   </div>
@@ -197,179 +186,174 @@
 
 <main>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about">
-    <div class="container reveal">
-      <div class="eyebrow">The project</div>
-      <h2>A glove that gives robots a human hand.</h2>
-      <p class="lead">REACH captures the full motion of the human hand and transfers that skill to
-         industrial robots and humanoid hands — so a person can guide and teach a robot simply by
-         moving their own hand.</p>
-      <p style="margin-top:22px">Industrial robots are brilliant at repetition but struggle with anything
-         unpredictable, and they're slow and costly to teach. REACH lets a human operator drive and train
-         them directly, with the dexterity of a real hand — even on a metal-heavy factory floor.</p>
-      <p>It's a university innovation project, developed at Óbuda University within the Hungarian Startup
-         University Programme (HSUP) — now a working prototype and a company in the making.</p>
+  <!-- ABOUT -->
+  <section id="about"><div class="container reveal">
+    <div class="eyebrow"><span class="en">The project</span><span class="hu">A projekt</span></div>
+    <h2><span class="en">A glove that gives robots a human hand.</span><span class="hu">Egy kesztyű, amely emberi kezet ad a robotoknak.</span></h2>
+    <p class="lead"><span class="en">REACH captures the full motion of the human hand and transfers that skill to industrial robots and humanoid hands — so a person can guide and teach a robot simply by moving their own hand.</span><span class="hu">A REACH rögzíti az emberi kéz teljes mozgását, és ezt a tudást átülteti ipari robotokba és humanoid kezekbe — így egy ember pusztán a saját kezének mozgatásával irányíthat és taníthat egy robotot.</span></p>
+    <p style="margin-top:22px"><span class="en">Industrial robots are brilliant at repetition but struggle with anything unpredictable, and they're slow and costly to teach. REACH lets a human operator drive and train them directly, with the dexterity of a real hand — even on a metal-heavy factory floor.</span><span class="hu">Az ipari robotok kiválóak az ismétlésben, de nehezen birkóznak meg a kiszámíthatatlannal, betanításuk pedig lassú és költséges. A REACH-csel egy ember közvetlenül irányíthatja és taníthatja őket, egy valódi kéz ügyességével — még fémben gazdag gyártócsarnokban is.</span></p>
+    <p><span class="en">It's a university innovation project, developed at Óbuda University within the Hungarian Startup University Programme (HSUP) — now a working prototype and a company in the making.</span><span class="hu">Egyetemi innovációs projekt, amely az Óbudai Egyetemen, a Hungarian Startup University Programme (HSUP) keretében fejlődik — mára működő prototípus és egy születőben lévő vállalkozás.</span></p>
+    <div class="stats">
+      <div class="stat"><div class="n">23</div><div class="l"><span class="en">degrees of freedom captured</span><span class="hu">rögzített szabadsági fok</span></div></div>
+      <div class="stat"><div class="n">17</div><div class="l"><span class="en">motion sensors across the hand</span><span class="hu">mozgásérzékelő a kézen</span></div></div>
+      <div class="stat"><div class="n">1&#8201;kHz</div><div class="l"><span class="en">real-time sampling</span><span class="hu">valós idejű mintavétel</span></div></div>
+      <div class="stat"><div class="n">PoC</div><div class="l"><span class="en">validated in the lab</span><span class="hu">laborban validálva</span></div></div>
+    </div>
+  </div></section>
 
-      <div class="stats">
-        <div class="stat"><div class="n">23</div><div class="l">degrees of freedom captured</div></div>
-        <div class="stat"><div class="n">17</div><div class="l">motion sensors across the hand</div></div>
-        <div class="stat"><div class="n">1&#8201;kHz</div><div class="l">real-time sampling</div></div>
-        <div class="stat"><div class="n">PoC</div><div class="l">validated in the lab</div></div>
+  <!-- TECHNOLOGY -->
+  <section id="tech"><div class="container reveal">
+    <div class="eyebrow"><span class="en">Technology</span><span class="hu">Technológia</span></div>
+    <h2><span class="en">Works where other gloves fail.</span><span class="hu">Ott működik, ahol a többi kesztyű csődöt mond.</span></h2>
+    <p class="lead"><span class="en">Most motion-capture gloves break down on a real factory floor — full of metal, magnetic fields and tight spaces. REACH is built for exactly that environment.</span><span class="hu">A legtöbb mozgásrögzítő kesztyű felmondja a szolgálatot egy valódi gyártócsarnokban — tele fémmel, mágneses terekkel és szűk helyekkel. A REACH pontosan ehhez a környezethez készült.</span></p>
+    <ul style="margin-top:26px">
+      <li><span class="en"><strong>Magnetic immunity by design.</strong> Heading is reconstructed from the anatomy of the hand itself, so the glove keeps working right next to metal machinery — an intentional design choice, not a workaround.</span><span class="hu"><strong>Mágneses immunitás tervezésből.</strong> Az irány a kéz saját anatómiájából áll össze, így a kesztyű fémgépek mellett is működik — ez szándékos tervezési döntés, nem kényszermegoldás.</span></li>
+      <li><span class="en"><strong>Full-hand resolution.</strong> Every joint of the hand is captured — all 23 degrees of freedom.</span><span class="hu"><strong>Teljes kézfelbontás.</strong> A kéz minden ízülete rögzül — mind a 23 szabadsági fok.</span></li>
+      <li><span class="en"><strong>Portable and factory-ready.</strong> Flexible, wearable, and free to move around the floor — not tethered to a camera rig.</span><span class="hu"><strong>Hordozható és üzemkész.</strong> Rugalmas, viselhető, és szabadon mozogsz vele a csarnokban — nem köt kamerás állványhoz.</span></li>
+    </ul>
+    <div class="feature">
+      <div class="ftxt">
+        <h3><span class="en">From layers to a living hand</span><span class="hu">Rétegekből élő kéz</span></h3>
+        <p><span class="en">An outer protective glove, a flexible sensor layer that follows every joint, and the electronics and structure underneath — engineered to fit and move like a second skin.</span><span class="hu">Egy külső védőkesztyű, egy rugalmas érzékelőréteg, amely minden ízületet követ, alatta pedig az elektronika és a vázszerkezet — úgy tervezve, hogy második bőrként simuljon és mozogjon.</span></p>
+        <p><span class="en">The hand is treated as a connected kinematic chain — the same way a roboticist models a robot arm — feeding a fusion engine that rebuilds the pose in real time: <strong style="color:#fff">Sense &rarr; Fuse &rarr; Digital twin &rarr; Act</strong>.</span><span class="hu">A kezet összefüggő kinematikai láncként kezeljük — ahogy egy robotmérnök modellez egy robotkart —, amely egy fúziós motort táplál, és valós időben építi újra a kéz pózát: <strong style="color:#fff">Érzékelés &rarr; Fúzió &rarr; Digitális iker &rarr; Cselekvés</strong>.</span></p>
+        <p class="note"><span class="en">Force feedback — letting the operator feel what the robot touches — is on the roadmap, not yet a shipped feature.</span><span class="hu">Az erővisszacsatolás — hogy a kezelő érezze, amit a robot megérint — a tervek között szerepel, még nem kész funkció.</span></p>
+      </div>
+      <div>
+        <div class="fimg"><img src="images/exploded.jpg" alt="Exploded view of the REACH glove layers"></div>
+        <div class="fcap"><span class="en">Concept — exploded view of the glove layers.</span><span class="hu">Koncepció — a kesztyű rétegeinek robbantott nézete.</span></div>
       </div>
     </div>
-  </section>
+    <div class="feature rev">
+      <div class="ftxt">
+        <h3><span class="en">Sensing every joint</span><span class="hu">Minden ízület érzékelése</span></h3>
+        <p><span class="en">A flexible printed-circuit network runs the length of each finger, with motion sensors at every segment and a controller at the wrist — capturing the hand without cameras or magnets.</span><span class="hu">Rugalmas nyomtatott áramköri hálózat fut végig minden ujjon, minden ujjpercnél mozgásérzékelővel és a csuklónál egy vezérlővel — kamera és mágnes nélkül rögzítve a kezet.</span></p>
+      </div>
+      <div>
+        <div class="fimg"><img src="images/sensors.jpg" alt="REACH flexible sensor electronics on a hand"></div>
+        <div class="fcap"><span class="en">Prototype — flexible sensor electronics.</span><span class="hu">Prototípus — rugalmas érzékelő elektronika.</span></div>
+      </div>
+    </div>
+  </div></section>
 
-  <!-- ===== TECHNOLOGY ===== -->
-  <section id="tech">
-    <div class="container reveal">
-      <div class="eyebrow">Technology</div>
-      <h2>Works where other gloves fail.</h2>
-      <p class="lead">Most motion-capture gloves break down on a real factory floor — full of metal,
-         magnetic fields and tight spaces. REACH is built for exactly that environment.</p>
+  <!-- GALLERY -->
+  <section id="gallery"><div class="container reveal">
+    <div class="eyebrow"><span class="en">Gallery</span><span class="hu">Galéria</span></div>
+    <h2><span class="en">The build, up close.</span><span class="hu">Közelről a megépített eszköz.</span></h2>
+    <p class="lead" style="margin-bottom:10px"><span class="en">Concept renders and prototype hardware.</span><span class="hu">Koncepció-renderek és prototípus-hardver.</span></p>
+    <div class="gallery">
+      <div class="tile" data-img="images/glove-hero.jpg"><img src="images/glove-hero.jpg" alt="Concept glove"></div>
+      <div class="tile" data-img="images/exploded.jpg"><img src="images/exploded.jpg" alt="Exploded view"></div>
+      <div class="tile" data-img="images/sensors.jpg"><img src="images/sensors.jpg" alt="Sensor electronics"></div>
+      <!-- ADD IMAGE: drop a file into images/ and replace this tile with:
+           <div class="tile" data-img="images/your-photo.jpg"><img src="images/your-photo.jpg" alt="..."></div> -->
+      <div class="tile ph"><span class="en">Add image — prototype photo</span><span class="hu">Kép helye — prototípus-fotó</span></div>
+      <div class="tile ph"><span class="en">Add image — team / demo</span><span class="hu">Kép helye — csapat / demó</span></div>
+      <div class="tile ph"><span class="en">Add image — digital twin</span><span class="hu">Kép helye — digitális iker</span></div>
+    </div>
+  </div></section>
 
-      <ul style="margin-top:26px">
-        <li><strong>Magnetic immunity by design.</strong> Heading is reconstructed from the anatomy of
-            the hand itself, so the glove keeps working right next to metal machinery — an intentional
-            design choice, not a workaround.</li>
-        <li><strong>Full-hand resolution.</strong> Every joint of the hand is captured — all 23 degrees of freedom.</li>
-        <li><strong>Portable and factory-ready.</strong> Flexible, wearable, and free to move around the floor — not tethered to a camera rig.</li>
+  <!-- FAQ -->
+  <section id="faq"><div class="container reveal">
+    <div class="eyebrow"><span class="en">Questions</span><span class="hu">Kérdések</span></div>
+    <h2><span class="en">Frequently asked questions.</span><span class="hu">Gyakran ismételt kérdések.</span></h2>
+    <p class="lead" style="margin-bottom:22px"><span class="en">Didn't find your answer? <a href="#contact">Get in touch</a>.</span><span class="hu">Nem találtad a választ? <a href="#contact">Írj nekünk</a>.</span></p>
+    <details open><summary><span class="en">What exactly is REACH?</span><span class="hu">Mi is pontosan a REACH?</span></summary><div class="ans"><p><span class="en">A wearable data glove that records the full motion of your hand and uses it to control or train robots and humanoid hands — bringing human dexterity to machines.</span><span class="hu">Egy viselhető adatkesztyű, amely rögzíti a kezed teljes mozgását, és ezzel robotokat vagy humanoid kezeket irányít vagy tanít be — emberi ügyességet adva a gépeknek.</span></p></div></details>
+    <details><summary><span class="en">How is it different from other motion-capture gloves?</span><span class="hu">Miben különbözik a többi mozgásrögzítő kesztyűtől?</span></summary><div class="ans"><p><span class="en">It keeps working in metal-heavy, magnetically noisy environments where most gloves drift or fail, it captures every joint of the hand (23 degrees of freedom), and it's portable rather than tied to a camera setup.</span><span class="hu">Fémben gazdag, mágnesesen zajos környezetben is működik, ahol a legtöbb kesztyű elcsúszik vagy leáll; a kéz minden ízületét rögzíti (23 szabadsági fok); és hordozható, nem köti kamerás rendszerhez.</span></p></div></details>
+    <details><summary><span class="en">What stage is the project at?</span><span class="hu">Milyen fázisban van a projekt?</span></summary><div class="ans"><p><span class="en">Early stage. We have a working proof-of-concept, published research, a full hardware design and a digital twin in development. It is not a commercial product yet.</span><span class="hu">Korai fázis. Van működő proof-of-conceptünk, publikált kutatásunk, teljes hardvertervünk és fejlesztés alatt álló digitális ikrünk. Még nem kereskedelmi termék.</span></p></div></details>
+    <details><summary><span class="en">Can I buy one or run a pilot?</span><span class="hu">Megvásárolható, vagy lehet pilotot indítani?</span></summary><div class="ans"><p><span class="en">Not off the shelf yet — but if you run a manufacturing or robotics operation and a pilot sounds interesting, reach out. Early conversations are exactly what we're after.</span><span class="hu">Polcról még nem — de ha gyártással vagy robotikával foglalkozol, és érdekel egy pilot, keress minket. Pont a korai beszélgetéseket keressük.</span></p></div></details>
+    <details><summary><span class="en">Does it give force feedback?</span><span class="hu">Van benne erővisszacsatolás?</span></summary><div class="ans"><p><span class="en">Letting the operator feel what the robot touches is on our roadmap. Today the focus is precise, reliable hand-motion capture.</span><span class="hu">Hogy a kezelő érezze, amit a robot megérint, a terveink között szerepel. Ma a pontos, megbízható kézmozgás-rögzítésre koncentrálunk.</span></p></div></details>
+    <details><summary><span class="en">Who is behind REACH?</span><span class="hu">Kik állnak a REACH mögött?</span></summary><div class="ans"><p><span class="en">A student-founded team at Óbuda University, developed within the Hungarian Startup University Programme (HSUP) and mentored by experienced engineers.</span><span class="hu">Egy hallgatók alapította csapat az Óbudai Egyetemen, a Hungarian Startup University Programme (HSUP) keretében, tapasztalt mérnökök mentorálásával.</span></p></div></details>
+  </div></section>
+
+  <!-- JOIN -->
+  <section id="join"><div class="container reveal">
+    <div class="eyebrow"><span class="en">Join the team</span><span class="hu">Csatlakozz a csapathoz</span></div>
+    <h2><span class="en">Help us put a human hand on every robot.</span><span class="hu">Segíts emberi kezet adni minden robotnak.</span></h2>
+    <p class="lead"><span class="en">We're a small student-founded team building real hardware with a clear path to market. If turning hand motion into robot skill sounds like your kind of problem, talk to us.</span><span class="hu">Kis, hallgatók alapította csapat vagyunk, valódi hardvert építünk, világos piacra lépési úttal. Ha a kézmozgás robottudássá alakítása a te problémád, beszéljünk.</span></p>
+    <div class="role">
+      <span class="roletag"><span class="en">We're hiring</span><span class="hu">Csapattagot keresünk</span></span>
+      <h3><span class="en">Software Lead</span><span class="hu">Szoftvervezető</span></h3>
+      <p><span class="en">Own the software that turns sensor data into a precise, real-time model of the hand. If you think of the human hand as a serial kinematic chain — a robotics state-estimation problem — you'll feel at home here.</span><span class="hu">Tiéd a szoftver, amely az érzékelők adataiból pontos, valós idejű kézmodellt épít. Ha az emberi kézre soros kinematikai láncként tekintesz — egy robotikai állapotbecslési feladatként —, itt otthon érzed magad.</span></p>
+      <ul>
+        <li><span class="en">Sensor fusion &amp; state estimation (Kalman filtering)</span><span class="hu">Szenzorfúzió és állapotbecslés (Kalman-szűrés)</span></li>
+        <li><span class="en">Python today, C++ / Eigen on the roadmap</span><span class="hu">Ma Python, a tervekben C++ / Eigen</span></li>
+        <li><span class="en">Robotics, motion capture or embedded background a plus</span><span class="hu">Robotika, mozgásrögzítés vagy beágyazott háttér előny</span></li>
       </ul>
-
-      <div class="feature">
-        <div class="ftxt">
-          <h3>From layers to a living hand</h3>
-          <p>An outer protective glove, a flexible sensor layer that follows every joint, and the
-             electronics and structure underneath — engineered to fit and move like a second skin.</p>
-          <p>The hand is treated as a connected kinematic chain — the same way a roboticist models a
-             robot arm — feeding a fusion engine that rebuilds the pose in real time:
-             <strong style="color:#fff">Sense → Fuse → Digital twin → Act</strong>.</p>
-          <p class="note">Force feedback — letting the operator feel what the robot touches — is on the roadmap, not yet a shipped feature.</p>
-        </div>
-        <div>
-          <div class="fimg"><img src="images/exploded.jpg" alt="Exploded view of the REACH glove layers"></div>
-          <div class="fcap">Concept — exploded view of the glove layers.</div>
-        </div>
-      </div>
-
-      <div class="feature rev">
-        <div class="ftxt">
-          <h3>Sensing every joint</h3>
-          <p>A flexible printed-circuit network runs the length of each finger, with motion sensors at
-             every segment and a controller at the wrist — capturing the hand without cameras or magnets.</p>
-        </div>
-        <div>
-          <div class="fimg"><img src="images/sensors.jpg" alt="REACH flexible sensor electronics on a hand"></div>
-          <div class="fcap">Prototype — flexible sensor electronics.</div>
-        </div>
-      </div>
+      <a class="btn solid" id="applyBtn" href="#contact"><span class="en">Apply for this role</span><span class="hu">Jelentkezz erre a pozícióra</span></a>
+      <p style="font-size:14px;margin-top:16px;margin-bottom:0"><span class="en">Prefer email? Write to <a href="mailto:reach.infrastructure@gmail.com?subject=Joining%20REACH%20%E2%80%94%20Software%20Lead">reach.infrastructure@gmail.com</a> with your CV.</span><span class="hu">Inkább e-mail? Írj a <a href="mailto:reach.infrastructure@gmail.com?subject=Jelentkez%C3%A9s%20%E2%80%94%20REACH%20Software%20Lead">reach.infrastructure@gmail.com</a> címre az önéletrajzoddal.</span></p>
     </div>
-  </section>
+    <p><span class="en">Not this role? We're always glad to meet people excited about robotics, sensing and hardware. <a href="#contact">Get in touch</a> and tell us what you'd want to build.</span><span class="hu">Nem ez a pozíció? Mindig szívesen találkozunk olyanokkal, akiket érdekel a robotika, az érzékelés és a hardver. <a href="#contact">Írj nekünk</a>, és meséld el, mit építenél.</span></p>
+  </div></section>
 
-  <!-- ===== GALLERY ===== -->
-  <section id="gallery">
-    <div class="container reveal">
-      <div class="eyebrow">Gallery</div>
-      <h2>The build, up close.</h2>
-      <p class="lead" style="margin-bottom:10px">Concept renders and prototype hardware.</p>
-      <div class="gallery">
-        <!-- real images -->
-        <div class="tile" data-img="images/glove-hero.jpg"><img src="images/glove-hero.jpg" alt="Concept glove"></div>
-        <div class="tile" data-img="images/exploded.jpg"><img src="images/exploded.jpg" alt="Exploded view"></div>
-        <div class="tile" data-img="images/sensors.jpg"><img src="images/sensors.jpg" alt="Sensor electronics"></div>
-        <!-- EMPTY PLACEHOLDERS — drop a file into the images/ folder and replace this whole tile with:
-             <div class="tile" data-img="images/your-photo.jpg"><img src="images/your-photo.jpg" alt="..."></div> -->
-        <div class="tile ph"><span>Add image — prototype photo</span></div>
-        <div class="tile ph"><span>Add image — team / demo</span></div>
-        <div class="tile ph"><span>Add image — digital twin</span></div>
+  <!-- CONTACT -->
+  <section id="contact"><div class="container reveal">
+    <div class="eyebrow"><span class="en">Contact</span><span class="hu">Kapcsolat</span></div>
+    <h2><span class="en">Let's talk.</span><span class="hu">Beszéljünk.</span></h2>
+    <p class="lead"><span class="en">Questions, pilot ideas, partnerships or just curious — we'd love to hear from you.</span><span class="hu">Kérdés, pilot-ötlet, együttműködés vagy csak kíváncsiság — örülünk, ha jelentkezel.</span></p>
+    <div class="contact-wrap">
+      <div>
+        <h3 style="margin-top:14px"><span class="en">Email us directly</span><span class="hu">Írj nekünk közvetlenül</span></h3>
+        <p class="big-mail"><a href="mailto:reach.infrastructure@gmail.com">reach.infrastructure@gmail.com</a></p>
+        <p><span class="en">Based at Óbuda University, Budapest · Hungarian Startup University Programme.</span><span class="hu">Óbudai Egyetem, Budapest · Hungarian Startup University Programme.</span></p>
+      </div>
+      <div>
+        <h3 style="margin-top:14px"><span class="en">Send a message</span><span class="hu">Küldj üzenetet</span></h3>
+        <!-- FORM delivers to reach.infrastructure@gmail.com via FormSubmit.co (no server needed).
+             FIRST submission triggers a one-time confirmation email to that address — click the link to activate. -->
+        <form action="https://formsubmit.co/reach.infrastructure@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New message from the REACH website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+          <label for="n"><span class="en">Name</span><span class="hu">Név</span></label>
+          <input id="n" name="name" type="text" required>
+          <label for="e"><span class="en">Email</span><span class="hu">E-mail</span></label>
+          <input id="e" name="email" type="email" required>
+          <label for="r"><span class="en">Reason</span><span class="hu">Tárgy</span></label>
+          <select id="r" name="reason">
+            <option value="General question" data-en="General question" data-hu="Általános kérdés">General question</option>
+            <option value="Joining the team" data-en="Joining the team" data-hu="Csatlakozás a csapathoz">Joining the team</option>
+            <option value="Pilot / partnership" data-en="Pilot / partnership" data-hu="Pilot / együttműködés">Pilot / partnership</option>
+            <option value="Press / other" data-en="Press / other" data-hu="Sajtó / egyéb">Press / other</option>
+          </select>
+          <label for="m"><span class="en">Message</span><span class="hu">Üzenet</span></label>
+          <textarea id="m" name="message" required></textarea>
+          <button class="btn solid" type="submit"><span class="en">Send message</span><span class="hu">Üzenet küldése</span></button>
+          <span class="formnote"><span class="en">We'll only use your email to reply to you.</span><span class="hu">Az e-mail-címedet csak a válaszhoz használjuk.</span></span>
+        </form>
       </div>
     </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section id="faq">
-    <div class="container reveal">
-      <div class="eyebrow">Questions</div>
-      <h2>Frequently asked questions.</h2>
-      <p class="lead" style="margin-bottom:22px">Didn't find your answer? <a href="#contact">Get in touch</a>.</p>
-      <details open><summary>What exactly is REACH?</summary><div class="ans"><p>A wearable data glove that records the full motion of your hand and uses it to control or train robots and humanoid hands — bringing human dexterity to machines.</p></div></details>
-      <details><summary>How is it different from other motion-capture gloves?</summary><div class="ans"><p>It keeps working in metal-heavy, magnetically noisy environments where most gloves drift or fail, it captures every joint of the hand (23 degrees of freedom), and it's portable rather than tied to a camera setup.</p></div></details>
-      <details><summary>What stage is the project at?</summary><div class="ans"><p>Early stage. We have a working proof-of-concept, published research, a full hardware design and a digital twin in development. It is not a commercial product yet.</p></div></details>
-      <details><summary>Can I buy one or run a pilot?</summary><div class="ans"><p>Not off the shelf yet — but if you run a manufacturing or robotics operation and a pilot sounds interesting, reach out. Early conversations are exactly what we're after.</p></div></details>
-      <details><summary>Does it give force feedback?</summary><div class="ans"><p>Letting the operator feel what the robot touches is on our roadmap. Today the focus is precise, reliable hand-motion capture.</p></div></details>
-      <details><summary>Who is behind REACH?</summary><div class="ans"><p>A student-founded team at Óbuda University, developed within the Hungarian Startup University Programme (HSUP) and mentored by experienced engineers.</p></div></details>
-    </div>
-  </section>
-
-  <!-- ===== JOIN ===== -->
-  <section id="join">
-    <div class="container reveal">
-      <div class="eyebrow">Join the team</div>
-      <h2>Help us put a human hand on every robot.</h2>
-      <p class="lead">We're a small student-founded team building real hardware with a clear path to market.
-         If turning hand motion into robot skill sounds like your kind of problem, talk to us.</p>
-      <div class="role">
-        <span class="roletag">We're hiring</span>
-        <h3>Software Lead</h3>
-        <p>Own the software that turns sensor data into a precise, real-time model of the hand. If you
-           think of the human hand as a serial kinematic chain — a robotics state-estimation problem —
-           you'll feel at home here.</p>
-        <ul>
-          <li>Sensor fusion &amp; state estimation (Kalman filtering)</li>
-          <li>Python today, C++ / Eigen on the roadmap</li>
-          <li>Robotics, motion capture or embedded background a plus</li>
-        </ul>
-        <a class="btn solid" href="mailto:cheiratech.projekt25@gmail.com?subject=Joining%20REACH%20%E2%80%94%20Software%20Lead" style="margin-top:8px;display:inline-block">Apply for this role</a>
-      </div>
-      <p>Not this role? We're always glad to meet people excited about robotics, sensing and hardware.
-         <a href="#contact">Get in touch</a> and tell us what you'd want to build.</p>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT ===== -->
-  <section id="contact">
-    <div class="container reveal">
-      <div class="eyebrow">Contact</div>
-      <h2>Let's talk.</h2>
-      <p class="lead">Questions, pilot ideas, partnerships or just curious — we'd love to hear from you.</p>
-      <div class="contact-wrap">
-        <div>
-          <h3 style="margin-top:14px">Email us directly</h3>
-          <p class="big-mail"><a href="mailto:cheiratech.projekt25@gmail.com">cheiratech.projekt25@gmail.com</a></p>
-          <p>Based at Óbuda University, Budapest · Hungarian Startup University Programme.</p>
-          <!-- EDIT: add LinkedIn / socials here -->
-        </div>
-        <div>
-          <h3 style="margin-top:14px">Send a message</h3>
-          <!-- TO ACTIVATE (free, no server): create a form at https://formspree.io,
-               then replace YOUR_FORM_ID below with your form's ID. Until then, use the email link. -->
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <label for="n">Name</label><input id="n" name="name" type="text" required>
-            <label for="e">Email</label><input id="e" name="email" type="email" required>
-            <label for="r">Reason</label>
-            <select id="r" name="reason"><option>General question</option><option>Joining the team</option><option>Pilot / partnership</option><option>Press / other</option></select>
-            <label for="m">Message</label><textarea id="m" name="message" required></textarea>
-            <button class="btn solid" type="submit">Send message</button>
-            <span class="formnote">We'll only use your email to reply to you.</span>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div></section>
 
 </main>
 
-<footer>
-  <div class="container foot">
-    <span>REACH · Óbuda University · Hungarian Startup University Programme</span>
-    <span><a href="mailto:cheiratech.projekt25@gmail.com">cheiratech.projekt25@gmail.com</a></span>
-  </div>
-</footer>
+<footer><div class="container foot">
+  <span><span class="en">REACH · Óbuda University · Hungarian Startup University Programme</span><span class="hu">REACH · Óbudai Egyetem · Hungarian Startup University Programme</span></span>
+  <span><a href="mailto:reach.infrastructure@gmail.com">reach.infrastructure@gmail.com</a></span>
+</div></footer>
 
-<!-- lightbox -->
 <div class="lb" id="lb"><button class="x" id="lbx" aria-label="Close">&times;</button><img id="lbimg" src="" alt=""></div>
 
 <script>
+  // language
+  const sel=document.getElementById('r');
+  function setLang(l){
+    document.body.dataset.lang=l;
+    document.documentElement.lang=l;
+    document.querySelectorAll('.langtog button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+    if(sel) sel.querySelectorAll('option').forEach(o=>{o.textContent=o.dataset[l]||o.textContent;});
+    try{localStorage.setItem('reach_lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.langtog button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  let init='en';
+  try{init=localStorage.getItem('reach_lang')|| ((navigator.language||'').toLowerCase().indexOf('hu')===0?'hu':'en');}
+  catch(e){ if((navigator.language||'').toLowerCase().indexOf('hu')===0) init='hu'; }
+  setLang(init);
+
+  // apply button -> preselect reason, jump to form
+  const applyBtn=document.getElementById('applyBtn');
+  if(applyBtn) applyBtn.addEventListener('click',()=>{ if(sel) sel.value='Joining the team'; });
+
   // mobile menu
   const burger=document.getElementById('burger'), menu=document.getElementById('menu');
   burger.addEventListener('click',()=>{menu.classList.toggle('show');burger.classList.toggle('open');});
