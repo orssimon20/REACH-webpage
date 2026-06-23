@@ -115,6 +115,9 @@
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--copper);box-shadow:0 0 0 3px rgba(200,133,76,.15)}
   select option{background:#15151A}
   .formnote{font-size:12.5px;color:var(--dim)}
+  .formstatus{font-size:14.5px;margin-top:6px;display:none}
+  .formstatus.ok{display:block;color:var(--teal)}
+  .formstatus.err{display:block;color:#df9070}
   .hp{position:absolute;left:-9999px}
   footer{background:#0A0A0C;border-top:1px solid var(--line);padding:34px 0 46px}
   .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--dim)}
@@ -300,11 +303,9 @@
         <h3 style="margin-top:14px"><span class="en">Send a message</span><span class="hu">Küldj üzenetet</span></h3>
         <!-- FORM delivers to reach.infrastructure@gmail.com via FormSubmit.co (no server needed).
              FIRST submission triggers a one-time confirmation email to that address — click the link to activate. -->
-        <form action="https://formsubmit.co/reach.infrastructure@gmail.com" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xqevanjl" method="POST">
           <input type="hidden" name="_subject" value="New message from the REACH website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
           <label for="n"><span class="en">Name</span><span class="hu">Név</span></label>
           <input id="n" name="name" type="text" required>
           <label for="e"><span class="en">Email</span><span class="hu">E-mail</span></label>
@@ -320,6 +321,7 @@
           <textarea id="m" name="message" required></textarea>
           <button class="btn solid" type="submit"><span class="en">Send message</span><span class="hu">Üzenet küldése</span></button>
           <span class="formnote"><span class="en">We'll only use your email to reply to you.</span><span class="hu">Az e-mail-címedet csak a válaszhoz használjuk.</span></span>
+          <div id="formStatus" class="formstatus" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -370,6 +372,22 @@
   document.getElementById('lbx').addEventListener('click',closeLb);
   lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+
+  // Formspree AJAX submit — stay on page, inline confirmation
+  const cf=document.getElementById('contactForm'), fst=document.getElementById('formStatus');
+  if(cf) cf.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const lang=document.body.dataset.lang;
+    const btn=cf.querySelector('button[type=submit]'); btn.disabled=true;
+    const okMsg = lang==='hu' ? 'Köszönjük! Megkaptuk az üzenetedet, hamarosan válaszolunk.' : 'Thanks! Your message is on its way — we will reply soon.';
+    const errMsg = lang==='hu' ? 'Hiba történt a küldéskor. Írj közvetlenül: reach.infrastructure@gmail.com' : 'Something went wrong. Please email us directly: reach.infrastructure@gmail.com';
+    try{
+      const res=await fetch(cf.action,{method:'POST',body:new FormData(cf),headers:{'Accept':'application/json'}});
+      if(res.ok){ cf.reset(); fst.className='formstatus ok'; fst.textContent=okMsg; }
+      else { fst.className='formstatus err'; fst.textContent=errMsg; }
+    }catch(err){ fst.className='formstatus err'; fst.textContent=errMsg; }
+    btn.disabled=false;
+  });
 </script>
 </body>
 </html>
